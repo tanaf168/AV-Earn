@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Tournament - User Panel</title>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/ranks.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-fire"></i>
+                <span>FF Tournament</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link active" data-page="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#" class="nav-link" data-page="tournaments">
+                    <i class="fas fa-trophy"></i> Tournaments
+                </a>
+                <a href="#" class="nav-link" data-page="profile">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+                <a href="#" class="nav-link" data-page="withdraw">
+                    <i class="fas fa-money-bill-wave"></i> Withdraw
+                </a>
+                <a href="#" class="nav-link" data-page="transactions">
+                    <i class="fas fa-history"></i> History
+                </a>
+                <a href="#" class="nav-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Page -->
+        <div class="page active" id="dashboard">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <p>Welcome back, <span id="userName">Player</span>!</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card balance-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="userBalance">$0.00</h3>
+                        <p>Current Balance</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card xp-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="userXP">0 XP</h3>
+                        <p>Experience Points</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card matches-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="matchesPlayed">0</h3>
+                        <p>Matches Played</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card earnings-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalEarnings">$0.00</h3>
+                        <p>Total Earnings</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rank Display -->
+            <div class="rank-section">
+                <div class="rank-card">
+                    <div class="rank-header">
+                        <h3>Your Rank</h3>
+                    </div>
+                    <div class="rank-display" id="rankDisplay">
+                        <div class="rank-icon" id="rankIcon">🥉</div>
+                        <div class="rank-info">
+                            <h2 class="rank-name" id="rankName">Bronze</h2>
+                            <div class="xp-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                                <p class="progress-text" id="progressText">0 / 100 XP to next rank</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Tournaments -->
+            <div class="tournaments-section">
+                <div class="section-header">
+                    <h3>Active Tournaments</h3>
+                    <a href="#" class="view-all-btn" data-page="tournaments">View All</a>
+                </div>
+                <div class="tournaments-grid" id="activeTournaments">
+                    <!-- Tournaments will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="transactions-section">
+                <div class="section-header">
+                    <h3>Recent Transactions</h3>
+                    <a href="#" class="view-all-btn" data-page="transactions">View All</a>
+                </div>
+                <div class="transactions-list" id="recentTransactions">
+                    <!-- Transactions will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tournaments Page -->
+        <div class="page" id="tournaments">
+            <div class="page-header">
+                <h1>Tournaments</h1>
+                <p>Join exciting Free Fire tournaments and win prizes!</p>
+            </div>
+            
+            <div class="tournaments-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                <button class="filter-btn" data-filter="live">Live</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+            
+            <div class="tournaments-container" id="tournamentsContainer">
+                <!-- Tournaments will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div class="page" id="profile">
+            <div class="page-header">
+                <h1>Profile</h1>
+                <p>Manage your account and view your progress</p>
+            </div>
+            
+            <div class="profile-container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="profileName">Player Name</h2>
+                            <p id="profileEmail">player@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Rank & XP Progress Section -->
+                    <div class="profile-rank-section">
+                        <h3>Rank & XP Progress</h3>
+                        <div class="profile-rank-display" id="profileRankDisplay">
+                            <!-- Rank info will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <span class="stat-label">Balance:</span>
+                            <span class="stat-value" id="profileBalance">$0.00</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-label">Experience:</span>
+                            <span class="stat-value" id="profileXP">0 XP</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-label">Matches Played:</span>
+                            <span class="stat-value" id="profileMatches">0</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-label">Tournaments Won:</span>
+                            <span class="stat-value" id="profileWins">0</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-label">Total Earnings:</span>
+                            <span class="stat-value" id="profileEarnings">$0.00</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="stat-label">Member Since:</span>
+                            <span class="stat-value" id="profileJoined">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Withdraw Page -->
+        <div class="page" id="withdraw">
+            <div class="page-header">
+                <h1>Withdraw Earnings</h1>
+                <p>Request withdrawal of your tournament earnings</p>
+            </div>
+            
+            <div class="withdraw-container">
+                <div class="withdraw-card">
+                    <div class="balance-info">
+                        <h3>Available Balance</h3>
+                        <div class="balance-amount" id="withdrawBalance">$0.00</div>
+                    </div>
+                    
+                    <form class="withdraw-form" id="withdrawForm">
+                        <div class="form-group">
+                            <label for="withdrawAmount">Withdrawal Amount</label>
+                            <input type="number" id="withdrawAmount" min="10" step="0.01" required>
+                            <small>Minimum withdrawal: $10.00</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentMethod">Payment Method</label>
+                            <select id="paymentMethod" required>
+                                <option value="">Select Payment Method</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="bank">Bank Transfer</option>
+                                <option value="crypto">Cryptocurrency</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentDetails">Payment Details</label>
+                            <textarea id="paymentDetails" placeholder="Enter your payment details (email, account number, wallet address, etc.)" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="withdraw-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Request Withdrawal
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="withdrawal-history">
+                    <h3>Withdrawal History</h3>
+                    <div class="withdrawals-list" id="withdrawalsList">
+                        <!-- Withdrawal history will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Page -->
+        <div class="page" id="transactions">
+            <div class="page-header">
+                <h1>Transaction History</h1>
+                <p>View all your tournament and financial transactions</p>
+            </div>
+            
+            <div class="transactions-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="tournament">Tournament</button>
+                <button class="filter-btn" data-filter="withdrawal">Withdrawal</button>
+                <button class="filter-btn" data-filter="bonus">Bonus</button>
+            </div>
+            
+            <div class="transactions-container" id="transactionsContainer">
+                <!-- Transactions will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login to Free Fire Tournament</h2>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Don't have an account? <a href="#" id="showSignup">Sign up here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+            </div>
+            <div class="modal-body">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">Display Name</label>
+                        <input type="text" id="signupName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Already have an account? <a href="#" id="showLogin">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tournament Join Modal -->
+    <div class="modal" id="tournamentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Join Tournament</h2>
+                <button class="modal-close" id="closeTournamentModal">&times;</button>
+            </div>
+            <div class="modal-body" id="tournamentModalBody">
+                <!-- Tournament details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/xp-system.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/tournaments.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+

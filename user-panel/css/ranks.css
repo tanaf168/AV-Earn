@@ -1,0 +1,481 @@
+/* Rank System Styles */
+
+/* Rank Colors and Styling */
+.rank-bronze {
+    color: #CD7F32;
+    text-shadow: 0 2px 4px rgba(205, 127, 50, 0.3);
+}
+
+.rank-silver {
+    color: #C0C0C0;
+    text-shadow: 0 2px 4px rgba(192, 192, 192, 0.3);
+}
+
+.rank-gold {
+    color: #FFD700;
+    text-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
+}
+
+.rank-platinum {
+    color: #E5E4E2;
+    text-shadow: 0 2px 4px rgba(229, 228, 226, 0.3);
+}
+
+.rank-diamond {
+    color: #B9F2FF;
+    text-shadow: 0 2px 4px rgba(185, 242, 255, 0.3);
+}
+
+.rank-heroic {
+    color: #FF6B6B;
+    text-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+}
+
+.rank-elite-heroic {
+    color: #FF1744;
+    text-shadow: 0 2px 4px rgba(255, 23, 68, 0.3);
+    font-weight: 700;
+}
+
+.rank-master {
+    color: #9C27B0;
+    text-shadow: 0 2px 4px rgba(156, 39, 176, 0.3);
+    font-weight: 700;
+}
+
+.rank-grandmaster {
+    background: linear-gradient(45deg, #FFD700, #FF6B6B, #4CAF50, #2196F3);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: grandmasterGlow 3s ease-in-out infinite;
+    font-weight: 800;
+    position: relative;
+}
+
+.rank-grandmaster::before {
+    content: '👑✨';
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    animation: crownFloat 2s ease-in-out infinite;
+}
+
+@keyframes grandmasterGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+    }
+    25% {
+        background-position: 100% 50%;
+        filter: drop-shadow(0 0 15px rgba(255, 107, 107, 0.5));
+    }
+    50% {
+        background-position: 50% 100%;
+        filter: drop-shadow(0 0 20px rgba(76, 175, 80, 0.5));
+    }
+    75% {
+        background-position: 50% 0%;
+        filter: drop-shadow(0 0 15px rgba(33, 150, 243, 0.5));
+    }
+}
+
+@keyframes crownFloat {
+    0%, 100% {
+        transform: translateY(-50%) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-60%) rotate(5deg);
+    }
+}
+
+/* Rank Progress Bars */
+.rank-bronze .progress-fill {
+    background: linear-gradient(45deg, #CD7F32, #B8860B);
+}
+
+.rank-silver .progress-fill {
+    background: linear-gradient(45deg, #C0C0C0, #A9A9A9);
+}
+
+.rank-gold .progress-fill {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+}
+
+.rank-platinum .progress-fill {
+    background: linear-gradient(45deg, #E5E4E2, #D3D3D3);
+}
+
+.rank-diamond .progress-fill {
+    background: linear-gradient(45deg, #B9F2FF, #87CEEB);
+}
+
+.rank-heroic .progress-fill {
+    background: linear-gradient(45deg, #FF6B6B, #FF4444);
+}
+
+.rank-elite-heroic .progress-fill {
+    background: linear-gradient(45deg, #FF1744, #D50000);
+}
+
+.rank-master .progress-fill {
+    background: linear-gradient(45deg, #9C27B0, #7B1FA2);
+}
+
+.rank-grandmaster .progress-fill {
+    background: linear-gradient(45deg, #FFD700, #FF6B6B, #4CAF50);
+    background-size: 200% 200%;
+    animation: progressGlow 2s ease-in-out infinite;
+}
+
+@keyframes progressGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Rank Cards */
+.rank-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.rank-card.rank-grandmaster {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 107, 0.1));
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.rank-card.rank-grandmaster::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #FFD700, #FF6B6B, #4CAF50, #2196F3);
+    background-size: 400% 400%;
+    animation: borderGlow 3s ease-in-out infinite;
+    z-index: -1;
+    margin: -2px;
+    border-radius: inherit;
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    75% {
+        background-position: 50% 0%;
+    }
+}
+
+/* Profile Rank Display */
+.profile-rank-display {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 12px;
+    border: 1px solid #dee2e6;
+}
+
+.profile-rank-icon {
+    font-size: 3rem;
+    min-width: 60px;
+    text-align: center;
+}
+
+.profile-rank-info {
+    flex: 1;
+}
+
+.profile-rank-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.profile-xp-progress {
+    margin-bottom: 10px;
+}
+
+.profile-progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.profile-progress-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.profile-progress-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Rank Badges */
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rank-badge.bronze {
+    background: rgba(205, 127, 50, 0.1);
+    color: #CD7F32;
+    border: 1px solid rgba(205, 127, 50, 0.3);
+}
+
+.rank-badge.silver {
+    background: rgba(192, 192, 192, 0.1);
+    color: #C0C0C0;
+    border: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.rank-badge.gold {
+    background: rgba(255, 215, 0, 0.1);
+    color: #FFD700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.rank-badge.platinum {
+    background: rgba(229, 228, 226, 0.1);
+    color: #E5E4E2;
+    border: 1px solid rgba(229, 228, 226, 0.3);
+}
+
+.rank-badge.diamond {
+    background: rgba(185, 242, 255, 0.1);
+    color: #B9F2FF;
+    border: 1px solid rgba(185, 242, 255, 0.3);
+}
+
+.rank-badge.heroic {
+    background: rgba(255, 107, 107, 0.1);
+    color: #FF6B6B;
+    border: 1px solid rgba(255, 107, 107, 0.3);
+}
+
+.rank-badge.elite-heroic {
+    background: rgba(255, 23, 68, 0.1);
+    color: #FF1744;
+    border: 1px solid rgba(255, 23, 68, 0.3);
+}
+
+.rank-badge.master {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+    border: 1px solid rgba(156, 39, 176, 0.3);
+}
+
+.rank-badge.grandmaster {
+    background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 107, 0.1));
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    animation: badgeGlow 2s ease-in-out infinite;
+}
+
+.rank-badge.grandmaster::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #FFD700, #FF6B6B, #4CAF50);
+    background-size: 200% 200%;
+    animation: badgeBorder 3s ease-in-out infinite;
+    z-index: -1;
+    margin: -2px;
+    border-radius: inherit;
+}
+
+@keyframes badgeGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+    }
+}
+
+@keyframes badgeBorder {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* XP Gain Animation */
+.xp-gain-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    z-index: 5000;
+    animation: xpGainPop 2s ease-out forwards;
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+}
+
+@keyframes xpGainPop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    40% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -80%) scale(1);
+    }
+}
+
+/* Rank Up Animation */
+.rank-up-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 6000;
+    animation: rankUpFade 4s ease-out forwards;
+}
+
+.rank-up-content {
+    text-align: center;
+    color: white;
+    animation: rankUpSlide 4s ease-out forwards;
+}
+
+.rank-up-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.rank-up-content .new-rank {
+    font-size: 4rem;
+    margin: 20px 0;
+    animation: rankGlow 2s ease-in-out infinite;
+}
+
+@keyframes rankUpFade {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes rankUpSlide {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    20% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
+
+@keyframes rankGlow {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+    }
+}
+
+/* Responsive Rank Styles */
+@media (max-width: 768px) {
+    .rank-display {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .rank-icon {
+        font-size: 3rem;
+    }
+    
+    .rank-name {
+        font-size: 1.5rem;
+    }
+    
+    .profile-rank-display {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-rank-icon {
+        font-size: 2.5rem;
+    }
+    
+    .profile-rank-name {
+        font-size: 1.3rem;
+    }
+    
+    .rank-up-content h1 {
+        font-size: 2rem;
+    }
+    
+    .rank-up-content .new-rank {
+        font-size: 3rem;
+    }
+}
+
