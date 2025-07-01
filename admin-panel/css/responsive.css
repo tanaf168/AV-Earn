@@ -1,0 +1,627 @@
+/* Responsive Design for Admin Panel */
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .stat-info h3 {
+        font-size: 1.8rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    /* Sidebar Mobile */
+    .sidebar {
+        transform: translateX(-260px);
+        z-index: 2000;
+    }
+    
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    /* Header Mobile */
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .page-title {
+        font-size: 1.3rem;
+    }
+    
+    .admin-info {
+        gap: 8px;
+    }
+    
+    .admin-name {
+        display: none;
+    }
+    
+    .admin-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+    
+    /* Page Content */
+    .page {
+        padding: 16px;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+    
+    .page-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    /* Dashboard Stats */
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 16px;
+        gap: 12px;
+    }
+    
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .stat-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .stat-info p {
+        font-size: 0.9rem;
+    }
+    
+    /* Dashboard Grid */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .card-header {
+        padding: 16px 20px;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .card-content {
+        padding: 16px 20px;
+    }
+    
+    /* Filter Buttons */
+    .tournaments-filter,
+    .withdrawals-filter,
+    .transactions-filter {
+        gap: 6px;
+        margin-bottom: 16px;
+    }
+    
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    /* Tables */
+    .data-table {
+        font-size: 0.8rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 8px 12px;
+    }
+    
+    .data-table th {
+        font-size: 0.75rem;
+    }
+    
+    /* Hide less important columns on mobile */
+    .data-table .hide-mobile {
+        display: none;
+    }
+    
+    /* Action buttons in tables */
+    .action-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .btn-sm {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+    
+    /* Search Box */
+    .search-box {
+        max-width: 100%;
+    }
+    
+    .search-box input {
+        padding: 8px 35px 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    /* Forms */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+    
+    /* Modals */
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+        max-height: 85vh;
+    }
+    
+    .modal-header {
+        padding: 16px 20px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .modal-body {
+        padding: 16px 20px;
+    }
+    
+    /* Settings */
+    .settings-container {
+        gap: 16px;
+    }
+    
+    .settings-card {
+        padding: 20px;
+    }
+    
+    .settings-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+    }
+    
+    .setting-item {
+        margin-bottom: 12px;
+    }
+    
+    /* Games Grid */
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .game-card {
+        padding: 16px;
+    }
+    
+    /* Promotions */
+    .promotion-card {
+        padding: 16px;
+    }
+    
+    /* User Info in Tables */
+    .user-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .user-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+        margin-right: 6px;
+    }
+    
+    .user-name {
+        font-size: 0.8rem;
+    }
+    
+    .user-email {
+        font-size: 0.7rem;
+    }
+    
+    /* Status Badges */
+    .status-badge {
+        padding: 2px 6px;
+        font-size: 0.65rem;
+    }
+    
+    /* Toast */
+    .toast {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        transform: translateY(-100px);
+    }
+    
+    .toast.show {
+        transform: translateY(0);
+    }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+    .header {
+        padding: 12px 16px;
+    }
+    
+    .page-title {
+        font-size: 1.2rem;
+    }
+    
+    .page {
+        padding: 12px;
+    }
+    
+    .dashboard-stats {
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .stat-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .stat-info p {
+        font-size: 0.8rem;
+    }
+    
+    .dashboard-grid {
+        gap: 12px;
+    }
+    
+    .card-header {
+        padding: 12px 16px;
+    }
+    
+    .card-content {
+        padding: 12px 16px;
+    }
+    
+    .data-table {
+        font-size: 0.75rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 6px 8px;
+    }
+    
+    .btn {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .btn-sm {
+        padding: 3px 6px;
+        font-size: 0.65rem;
+    }
+    
+    .filter-btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+    
+    .modal-header {
+        padding: 12px 16px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .modal-body {
+        padding: 12px 16px;
+    }
+    
+    .settings-card {
+        padding: 16px;
+    }
+    
+    .user-avatar {
+        width: 24px;
+        height: 24px;
+        font-size: 0.6rem;
+        margin-right: 4px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+    .main-content {
+        margin-left: 280px;
+    }
+    
+    .sidebar {
+        width: 280px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+    
+    .page {
+        padding: 32px;
+    }
+    
+    .stat-card {
+        padding: 28px;
+    }
+    
+    .stat-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.6rem;
+    }
+    
+    .stat-info h3 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar,
+    .header,
+    .mobile-menu-btn,
+    .modal,
+    .loading-overlay,
+    .toast,
+    .btn,
+    .action-buttons {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .page {
+        display: block !important;
+        padding: 20px;
+    }
+    
+    .dashboard-stats,
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .stat-card,
+    .dashboard-card {
+        box-shadow: none;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .data-table {
+        font-size: 0.8rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 6px 8px;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .stat-icon,
+    .admin-avatar,
+    .user-avatar {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .loading-spinner i {
+        animation: none;
+    }
+    
+    .sidebar {
+        transition: none;
+    }
+    
+    .main-content {
+        transition: none;
+    }
+}
+
+/* Focus Styles for Accessibility */
+.nav-item:focus,
+.btn:focus,
+.filter-btn:focus,
+input:focus,
+select:focus,
+textarea:focus,
+.modal-close:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .nav-item,
+    .filter-btn,
+    .sidebar-toggle,
+    .mobile-menu-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .stat-card:hover,
+    .dashboard-card:hover,
+    .game-card:hover {
+        transform: none;
+    }
+    
+    .nav-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Sidebar Overlay for Mobile */
+@media (max-width: 768px) {
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1500;
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+    }
+    
+    .sidebar.mobile-open + .sidebar-overlay {
+        display: block;
+    }
+}
+
+/* Table Responsive Wrapper */
+@media (max-width: 768px) {
+    .tournaments-table-container,
+    .users-table-container,
+    .withdrawals-table-container,
+    .transactions-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .data-table {
+        min-width: 600px;
+    }
+}
+
+/* Compact Mode for Small Screens */
+@media (max-width: 480px) {
+    .compact-table {
+        min-width: auto;
+    }
+    
+    .compact-table th,
+    .compact-table td {
+        padding: 4px 6px;
+        font-size: 0.7rem;
+    }
+    
+    .compact-table .user-info {
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .compact-table .user-details {
+        display: none;
+    }
+    
+    .compact-table .action-buttons {
+        flex-direction: row;
+        gap: 2px;
+    }
+}
+
